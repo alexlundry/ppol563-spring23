@@ -256,6 +256,13 @@ filter function where year is \>= 1977, then for each country, we count
 (that’s the n function) how many times it shows up, and we then filter
 it to see only those countries that have 25 or more observations.
 
+Notice here that I used a group_by function on country, but that was NOT
+followed by a summarize function. It was instead followed by a mutate
+function. A summarize would have “rolled-up” the data by country, but
+since we used a mutate function, it is instead appending a rolled up
+number by country to each individual data point for that country. It is
+a way to attach a grouped summary variable to non-summarized data.
+
 Let’s see what that looks like by country:
 
 ``` r
@@ -265,6 +272,9 @@ ggplot(d1, aes(fct_infreq(country))) +
 ```
 
 ![](EDA-in-R_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+
+The fct_infreq function comes from the forcats package; it allows us to
+sort the country variable by frequency.
 
 We can then filter the data down to just those countries with a few
 dplyr moves.
@@ -413,19 +423,15 @@ ggplot(gapminder_unfiltered, aes(x = reorder(continent, gdpPercap, FUN = median)
 ![](EDA-in-R_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 Let’s revisit the facet, but instead of using counts, we can use
-`..density..` as the y argument in the `aes` function. This let’s use
-see the values as a relative measurement rather than an absolute count -
-so that we can better see the patterns in other areas. We can provide
-..density.. as the y argument in `aes`:
+`after_stat(density)` as the y argument in the `aes` function. This
+let’s use see the values as a relative measurement rather than an
+absolute count - so that we can better see the patterns in other areas.
 
 ``` r
-ggplot(gapminder_unfiltered, aes(gdpPercap, ..density..)) +
+ggplot(gapminder_unfiltered, aes(gdpPercap, after_stat(density))) +
    geom_histogram() +
    facet_wrap(~ continent)
 ```
-
-    ## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `after_stat(density)` instead.
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
@@ -441,6 +447,9 @@ ggplot(gapminder_unfiltered, aes(gdpPercap, ..density..)) +
    geom_histogram() +
    facet_wrap(~ continent, scales = "free")
 ```
+
+    ## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+    ## ℹ Please use `after_stat(density)` instead.
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
