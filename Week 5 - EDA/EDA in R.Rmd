@@ -168,7 +168,7 @@ ggplot(gapminder_unfiltered, aes(gdpPercap)) +
 
 Our aesthetic is `gdpPercap`
 
-A histogram divides the x-axis into equally spaced bins and then uses the height of a bar to display the number of observations that fall in each bin.  The tallest bar shows that about 78 observations have a Per Capita GDP of about $20,000.   
+A histogram divides the x-axis into equally spaced bins and then uses the height of a bar to display the number of observations that fall in each bin.  The tallest bar shows that about 700 observations are clustered around the lowest possible Per Capita GDP.   
 
 Moreover, the histogram shows that there is not a ton of variability here. High kurtosis (mode is more common than it would be in a normal distribution).
 
@@ -235,7 +235,7 @@ ggplot(gapminder_unfiltered, aes(gdpPercap, after_stat(density))) +
 
 You'll notice that in this and the previous facet examples, the facets' axes were fixed. You can change this in an argument to `facet_wrap`, where you can set `scales = "free"` to have both x and y vary in each facet, or you could also set them either `free_x` or `free_y`:
 ```{r}
-ggplot(gapminder_unfiltered, aes(gdpPercap, ..density..)) +
+ggplot(gapminder_unfiltered, aes(gdpPercap, after_stat(density))) +
    geom_histogram() +
    facet_wrap(~ continent, scales = "free")
 ```

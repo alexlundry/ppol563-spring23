@@ -317,8 +317,8 @@ Our aesthetic is `gdpPercap`
 
 A histogram divides the x-axis into equally spaced bins and then uses
 the height of a bar to display the number of observations that fall in
-each bin. The tallest bar shows that about 78 observations have a Per
-Capita GDP of about \$20,000.
+each bin. The tallest bar shows that about 700 observations are
+clustered around the lowest possible Per Capita GDP.
 
 Moreover, the histogram shows that there is not a ton of variability
 here. High kurtosis (mode is more common than it would be in a normal
@@ -442,13 +442,10 @@ where you can set `scales = "free"` to have both x and y vary in each
 facet, or you could also set them either `free_x` or `free_y`:
 
 ``` r
-ggplot(gapminder_unfiltered, aes(gdpPercap, ..density..)) +
+ggplot(gapminder_unfiltered, aes(gdpPercap, after_stat(density))) +
    geom_histogram() +
    facet_wrap(~ continent, scales = "free")
 ```
-
-    ## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `after_stat(density)` instead.
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
