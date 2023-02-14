@@ -85,7 +85,7 @@ We use another count function, this time on all countries, with the option of so
 
 So we know there ar 187 unique countries and that the max number of observations is 58.
 
-Ok, 58 seems to be the MAX and MODAL number of entries. Let's see how many countries meet that criteria by visualizing the count data table as a histogram.
+Let's see how many countries meet that criteria by visualizing the count data table as a histogram.
 ```{r echo=TRUE}
 gapminder_unfiltered %>% 
    count(country) %>% 
