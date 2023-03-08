@@ -7,3 +7,4 @@ This is the repository for PPOL563 Data Visualization for Data Science at the Mc
 
 - [Problem Set 1](https://alexlundry.github.io/ppol563-spring23/psets/ppol563_spring23_pset1.html)
 - [Problem Set 2](https://alexlundry.github.io/ppol563-spring23/psets/ppol563_spring23_pset2.html)
+- [Problem Set 3](https://alexlundry.github.io/ppol563-spring23/psets/ppol563_spring23_pset3.html)
