@@ -517,5 +517,5 @@ For more on Plotly you can use this [cheat sheet](https://images.plot.ly/plotly-
 #### Acknowledgements
 
 -   Thanks to Gina Reynolds for the racing bar charts [demo](https://evamaerey.github.io/little_flipbooks_library/racing_bars/racing_barcharts.html#35).
--   Here's another racing bar chart demo I adapted from [amrrs](%22https://github.com/amrrs/animated_bar_charts_in_R%22) and the associated article at [R Bloggers](%22https://www.r-bloggers.com/2020/01/how-to-create-bar-race-animation-charts-in-r/%22).
--   The leaflet section was adapted from [here](%22https://mdsr-book.github.io/mdsr2e/ch-spatial.html%22).
+-   Here's another racing bar chart demo I adapted from [amrrs](https://github.com/amrrs/animated_bar_charts_in_R) and the associated article at [R Bloggers](https://www.r-bloggers.com/2020/01/how-to-create-bar-race-animation-charts-in-r/).
+-   The leaflet section was adapted from [here](https://mdsr-book.github.io/mdsr2e/ch-spatial.html).
