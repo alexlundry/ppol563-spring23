@@ -11,3 +11,4 @@ You can find the webpage for Week 9's animation demonstration [here](https://ale
 - [Problem Set 1](https://alexlundry.github.io/ppol563-spring23/psets/ppol563_spring23_pset1.html)
 - [Problem Set 2](https://alexlundry.github.io/ppol563-spring23/psets/ppol563_spring23_pset2.html)
 - [Problem Set 3](https://alexlundry.github.io/ppol563-spring23/psets/ppol563_spring23_pset3.html)
+- [Problem Set 4](https://alexlundry.github.io/ppol563-spring23/psets/ppol563_spring23_pset4.html)
