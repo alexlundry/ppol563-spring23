@@ -10,6 +10,7 @@ library(plotly)
 
 d1 <- gapminder::gapminder
 
+# Data clean-up
 # Convert population into a more readable format (millions)
 # Round life expectancy to make it more readable
 d1 <- d1 %>% 
@@ -68,7 +69,8 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                               
                               # this is where we specify what goes in the main panel
                               mainPanel(
-                                 # Title of the plot (actually built on server side, but remember this makes the UI)
+                                 # Title of the plot (The title must dynamically change based on our inputs, so this is actually built on server side, 
+                                 # but remember that we need to have a placeholder for it in the UI)
                                  h3(textOutput("output_countries_years")),
                                  # Placeholder for a Plotly plot
                                  plotlyOutput("ggplot_variable_vs_two_countries")
@@ -78,16 +80,6 @@ ui <- fluidPage(theme = shinytheme("superhero"),
 
 # Define server logic
 server <- function(input, output) {
-   
-   # Render the first Country Selector UI and map the output of that to a reactive variable
-   country_from_gapminder <- renderUI({
-      input$country_from_gapminder
-   })
-   
-   # Render the second Country Selector UI and map the output of that to a reactive variable
-   country_2_from_gapminder <- renderUI({
-      input$country_2_from_gapminder
-   })
    
    # Create the filtered data set of the two selected countries and the right years.
    # This is done in a reactive expression so it creates a reactive variable for the dataset
@@ -122,20 +114,21 @@ server <- function(input, output) {
 
    # Render ggplot plot based on variable input from radioButtons
    # Then, turn it into a Plotly plot using ggplotly
-   # note that we had to use renderPlotly instead of renderPlot
-   # we've included some error handling here again
-   # and some If logic to determine what label we use for the Y axis
-   output$ggplot_variable_vs_two_countries <- renderPlotly({
-         
+   output$ggplot_variable_vs_two_countries <- renderPlotly({    # note that we had to use renderPlotly instead of renderPlot
+
+      # we've included some error handling here again         
       if(is.null(two_country_data()$year)){
          return(NULL)
       }
-      
+
+      # and some If logic to determine what label we use for the Y axis
       if(input$variable_from_gapminder == "pop") y_axis_label <- "Population (millions)"
       if(input$variable_from_gapminder == "lifeExp") y_axis_label <- "Life Expectancy (years)"
       if(input$variable_from_gapminder == "gdpPercap") y_axis_label <- "GDP Per Capita (in US dollars)"
       
-      p1 <- ggplot(two_country_data(), aes_string(x = "year", 
+      p1 <- ggplot(two_country_data(), aes_string(x = "year",     
+                                                  # notice that when we call the data in ggplot, we are calling
+                                                  # a reactive dataset, so we put parentheses after it
                                                   y = input$variable_from_gapminder,
                                                   color = "country")) +
          geom_line(size = 1) +
